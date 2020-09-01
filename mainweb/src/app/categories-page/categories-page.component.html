@@ -1,0 +1,133 @@
+<app-navbar-mobile *ngIf="isMobile; else elseBlock"></app-navbar-mobile>
+<ng-template #elseBlock><app-navbar></app-navbar></ng-template>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-lg-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="sidebar left shadow">
+                        <ul class="list-sidebar bg-defoult">
+                          <li style="background-color: #002e71;"><span class="nav-label text-white fontchange"> All Categories </span>
+                          </li>
+                          <li *ngFor="let category of sidebar; index as i" > 
+                            <a href="{{'#tab_' + i}}" class="collapsed" data-toggle="collapse"  (click)="getonecat(category.id,i)">
+                              <i class="fa fa-diamond"></i> <span class="nav-label">{{category.title}}</span> 
+                              <span [ngClass]="currentSubCategorycheck(category.id) ? 'fa fa-chevron-down' : ''" class="pull-right"></span>
+                            </a>
+                            <ul class="sub-menu collapse" id="{{'tab_' + i}}">
+                              <li *ngFor="let sub of onecat"><a (click)=getproductlist(category.id,sub.id)>{{sub.title}}</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="sidebar left shadow">
+                    <ul class="list-sidebar bg-defoult">
+                        <li style="background-color: #002e71;"><span class="nav-label text-white fontchange"> Filters </span>
+                        </li>
+                      <li> <a data-toggle="collapse" data-target="#dashboard" class="collapsed active" ><span class="nav-label"> Brands </span>  </a>
+                        <form [formGroup]="brandcheckGroupForm">
+                        <div style="text-align: center; margin-left: 5px;">
+                          <div class="d-inline" *ngFor="let brand of filterbrand;let i = index">
+                            <input (change)="onlybrand(brand.id)" type="checkbox"/> {{brand.title}}
+                          </div>
+                        </div>
+                        </form>
+                      </li>
+                      <li> <a data-toggle="collapse" data-target="#products" class="collapsed active"><span class="nav-label">Price Range</span>  </a>
+                          <div class="rangeClass">
+                            <ng5-slider style="width: 80%;" (userChange)="rangecheck()" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+                          </div>
+                      </li>
+                      <li *ngIf="sml" style="text-align: center; padding-bottom: 10px; padding-top: 10px;">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                          <label class="btn btn-primary">
+                            <input type="radio" name="options" id="small" (click)="selectsml('small')" autocomplete="off"> Small
+                          </label>
+                          <label class="btn btn-primary">
+                            <input type="radio" name="options" id="medium" (click)="selectsml('medium')" autocomplete="off"> Medium
+                          </label>
+                          <label class="btn btn-primary">
+                            <input type="radio" name="options" id="large" (click)="selectsml('large')" autocomplete="off"> Large
+                          </label>
+                        </div>
+                      </li>
+                      <li *ngIf="inches"> <a data-toggle="collapse" data-target="#dashboard" class="collapsed active" ><span class="nav-label"> Inches </span>  </a>
+                        <form>
+                        <div style="text-align: center; margin-left: 5px;">
+                          <div class="d-inline" *ngFor="let inch of inchesoptions;let i = index;" style="margin-left: 10px;">
+                            <input (change)="selectedinch(i)" type="checkbox"/> {{inchesoptions[i]}} inches
+                          </div>
+                        </div>
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg -9">
+            <div id="demo" class="carousel slide shadow" data-ride="carousel">
+
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                  <li data-target="#demo" data-slide-to="0" class="active"></li>
+                  <li data-target="#demo" data-slide-to="1"></li>
+                  <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+                
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="../../assets/images/banner4.jpg" alt="Los Angeles" width="1100" height="265">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="../../assets/images/banner2.jpg" alt="Chicago" width="1100" height="265">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="../../assets/images/banner3.png" alt="New York" width="1100" height="265">
+                  </div>
+                </div>
+                
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                </a>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="paginationButton">
+                    <button class="btn btn-primary custom-btn my-2 my-sm-0" type="submit" href="/"><span><i class="fa fa-chevron-left" style="color: #ffffff;" aria-hidden="true"></i> </span></button>
+                    <button class="btn btn-primary custom-btn my-2 my-sm-0" style="margin-left: 2px;" type="submit" href="/"><span><i class="fa fa-chevron-right" style="color: #ffffff;" aria-hidden="true"></i> </span></button>
+                  </div>
+                </div>
+                  <div *ngFor="let prod of filterproductindex" class="column">
+                    <div class="cardx" >
+                      <div class="d-flex" (click)="navigatetodescription(products[prod].id)" style="background-color: white;height: 200px;justify-content: center;padding-bottom: 5px;">
+                        <img src="{{ prod_image[prod] }}" alt="Jane" width="80%" style="padding-top: 5px;">
+                      </div>
+                      <div class="containerx" style="height: 150px; text-align: center;">
+                        <h5>{{products[prod].title}}</h5>
+                        <p *ngIf="!salecheck[prod]">Rs {{products[prod].sell_price}}</p>
+                        <p *ngIf="salecheck[prod]">Rs <s>{{products[prod].sell_price}}</s> {{saleprice[prod]}}</p>
+                        <div class="shoppingcart d-inline">
+                          <button class="btn btn-primary custom2-btn my-2 my-sm-0" type="submit" href="/" (click)="saveproducttocache(products[prod].id,quantitychoosen)"><span><i class="fa fa-shopping-cart" style="color: #ffffff;" aria-hidden="true"></i> </span> Add To Cart</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+    </div>
+</div>
+<br/>
+<app-footer></app-footer>

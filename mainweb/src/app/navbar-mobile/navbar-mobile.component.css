@@ -1,0 +1,12 @@
+.btn-primary.custom-btn {
+	background-color: #002e71;
+    border-color: #002e71;
+    margin-left: 3px;
+}
+.form-inline {
+    width: 600px;
+    text-align: center;
+}
+.w-75 {
+    width: 85%!important;
+}

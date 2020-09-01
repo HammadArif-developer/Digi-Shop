@@ -1,0 +1,52 @@
+
+<div class=" content">
+    <div class=" row">
+      <div class=" col-md-12">
+        <div class=" card">
+          <div class=" card-header"><h4 class=" title">Featured Product</h4></div>
+          <div class=" card-body">
+            <form>
+              <div>
+                <h5 class="title">Add Featured Product</h5>
+                <div class="row">
+                    <div class=" col-md-6 pr-md-1">
+                      <div class="form-group" [formGroup]="addfeaturedproductForm">
+                          <label> Products Available </label>
+                          <div class="form-group mb-3">
+                              <select class="form-control" formControlName="product" id="inputGroupSelect02">
+                              <option  *ngFor="let prod of productarr" [value]="prod.id" style="color: black;">{{prod.title}}</option>
+                              </select>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <button class=" btn btn-fill ml-4" (click)="onsubmitaddfeaturedproduct()" type="submit">Add</button>
+                </div>
+              </div>
+              <div>
+                <h5 class="title">Delete Featured Products</h5>
+                <div class="row">
+                    <div class=" col-md-6 pr-md-1">
+                      <div class="form-group" [formGroup]="deletefeaturedproductForm">
+                          <label>Featured Products Available </label>
+                          <div class="form-group mb-3">
+                              <select class="form-control" formControlName="product" id="inputGroupSelect02">
+                              <option  *ngFor="let prod of featuredproductarr" [value]="prod.id" style="color: black;">{{prod.title}}</option>
+                              </select>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <button class=" btn btn-fill ml-4" (click)="onsubmitdeletefeaturedproduct()" type="submit">Delete</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

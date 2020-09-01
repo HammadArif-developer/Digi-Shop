@@ -1,0 +1,146 @@
+<style>
+  .mericlass{
+    background-color: red !important;
+  }
+</style>
+<div class="container">
+      <div class= "row">
+        <div class="col-md-4 col-lg-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="sidebar left shadow">
+                        <ul class="list-sidebar bg-defoult">
+                            <li style="background-color: #002e71;"><span class="nav-label text-white fontchange"> All Categories </span>
+                            </li>
+                            <li *ngFor="let category of sidebar; index as i" > 
+                              <a href="{{'#tab_' + i}}" class="collapsed" data-toggle="collapse"  (click)="getonecat(category.id)">
+                                <i class="fa fa-diamond"></i> <span class="nav-label">{{category.title}}</span> 
+                                <span [ngClass]="currentSubCategorycheck(category.id) ? 'fa fa-chevron-down' : ''" class="pull-right"></span>
+                              </a>
+                              <ul class="sub-menu collapse" id="{{'tab_' + i}}">
+                                <li *ngFor="let sub of onecat"><a (click)=getproductlist(category.id,sub.id)>{{sub.title}}</a></li>
+                              </ul>
+                            </li>
+                        </ul>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg -9">
+          <div id="demo" class="carousel slide shadow" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+            
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="../../assets/images/image1.jpg" alt="Los Angeles" width="1100" height="500">
+              </div>
+              <div class="carousel-item">
+                <img src="../../assets/images/image2.jpg" alt="Chicago" width="1100" height="500">
+              </div>
+              <div class="carousel-item">
+                <img src="../../assets/images/image3.jpg" alt="New York" width="1100" height="500">
+              </div>
+            </div>
+            
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          </div>
+
+          <br/>
+          <div class="row">
+            <div class="col-md-6" style="margin-top: 2%;">
+              <img class="shadow" src="../../assets/images/imagetest1.jpg" alt="Los Angeles" width="100%" height="265">
+            </div>
+            <div class="col-md-6" style="margin-top: 2%;">
+              <img class="shadow" src="../../assets/images/imagetest1.jpg" alt="Los Angeles" width="100%" height="265">
+            </div>
+          </div>
+          <!-- second carousel -->
+           <!-- (imageClick)="navigateToCategories()" -->
+          <div class="row">
+            <div class="col-md-12" style="margin-top: 2%; ">
+              <h2>Featured Categories</h2>
+            </div>
+            <div class="col-md-12">
+              <ng-image-slider #nav
+              [images]="featuredCategory"
+              [infinite]="true"
+              [autoSlide]="1"
+              [imageSize]="isMobile == true ? {width: '50%', height: '200'} : {width: '50%', height: '300'}"
+              slideImage="1"></ng-image-slider>   
+              <!--/.Carousel Wrapper-->          
+            </div>
+          </div>
+          <!-- second carousel -->
+          <br/>
+
+          <div class="row">
+            <div class="col-md-12 bordering">
+              <h2>Featured Product</h2>
+            </div>
+            <div class="col-md-12">
+            <ng-image-slider #nav
+            [images]="featuredItem"
+            [infinite]="true"
+            [autoSlide]="1"
+            [imageSize]="isMobile == true ? {width: '33%', height: '100'} : {width: '25%', height: '200'}"
+            slideImage="1"></ng-image-slider>        
+            </div>
+          </div>
+
+          <br/>
+
+        </div>
+    </div>
+</div>
+<div class="container-fliud" style="background-color: #000429;">
+  <div class="row">
+    <div class="container">
+      <div class="row"> 
+        <!-- <div class="col-md-3" style="text-align: center;">
+          <div class="settingBrand">
+            <img src="../../assets/images/logo-carousel/logo-1.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-3" style="text-align: center;"> 
+          <div class="settingBrand">
+            <img src="../../assets/images/logo-carousel/logo-2.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-3" style="text-align: center;"> 
+          <div class="settingBrand">
+            <img src="../../assets/images/logo-carousel/logo-3.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-3" style="text-align: center;"> 
+          <div class="settingBrand">
+            <img src="../../assets/images/logo-carousel/logo-4.png" alt="">
+          </div>
+        </div> -->
+        <div class="col-md-12" style="padding-top: 20px; padding-bottom: 20px;">
+        
+          <ng-image-slider #nav
+            [images]="imageObject2"
+            [infinite]="true"
+            [autoSlide]="1"
+            [showArrow]= "false"
+            [imageSize]="{width: '25%', height: '50', space: 50}"
+            slideImage="1">
+          </ng-image-slider>     
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

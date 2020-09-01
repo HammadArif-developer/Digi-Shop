@@ -1,0 +1,291 @@
+
+<div class=" content">
+    <div class=" row">
+      <div class=" col-md-12">
+        <div class=" card">
+          <div class=" card-header"><h4 class=" title">Add Product</h4></div>
+          <div class=" card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-3">
+                  <button class=" btn btn-fill" type="submit" (click)="toaddcategory()">Add Category</button>
+                </div>
+                <div class="col-md-3">
+                  <button class=" btn btn-fill" type="submit" (click)="toaddsubcategory()">Add Subcategory</button>
+                </div>
+                <div class="col-md-3">
+                  <button class=" btn btn-fill" type="submit" (click)="toaddbrand()">Add Brand</button>
+                </div>
+                <div class="col-md-3">
+                  <button class=" btn btn-fill" type="submit" (click)="toaddvendor()">Add Vendor</button>
+                </div>
+              </div>
+              <div *ngIf="addcategory">
+                <h5 class="title">Add Category</h5>
+                <div class=" row">
+                    <div class=" col-md-6 pr-md-1">
+                    <div class="form-group" [formGroup]="categoryForm">
+                      <label> Category Title </label>
+                      <input class=" form-control" formControlName="title" placeholder="Title" type="text"/>
+                    </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                      <div class="form-group" [formGroup]="categoryForm">
+                        <label> Category Description </label>
+                        <input class=" form-control" formControlName="description" placeholder="Title" type="text"/>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <button class=" btn btn-fill ml-4" (click)="onsubmitcategory()" type="submit">Add</button>
+                </div>
+              </div>
+              <div *ngIf="addsubcategory">
+                <h5 class="title">Add Subcategory</h5>
+                <div class="row">
+                    <div class=" col-md-6 pr-md-1">
+                    <div class="form-group" [formGroup]="subcategoryForm">
+                      <label> Subcategory Title </label>
+                      <input class=" form-control" formControlName="title" placeholder="Title" type="text"/>
+                    </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                      <div class="form-group" [formGroup]="subcategoryForm">
+                          <label> Categories Available </label>
+                          <div class="form-group mb-3">
+                              <select class="form-control" formControlName="category" (change)="updatesubcat()" id="inputGroupSelect02">
+                              <option  *ngFor="let cat of categoryarr" [value]="cat.id" style="color: black;">{{cat.title}}</option>
+                              </select>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <button class=" btn btn-fill ml-4" (click)="onsubmitsubcategory()" type="submit">Add</button>
+                </div>
+              </div>
+              <div *ngIf="addbrand">
+                <h5 class="title">Add Brand</h5>
+                <div class=" row">
+                    <div class=" col-md-12 pr-md-1">
+                    <div class="form-group" [formGroup]="brandForm">
+                      <label> Brand Title </label>
+                      <input class=" form-control" formControlName="title" placeholder="Title" type="text"/>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <button class=" btn btn-fill ml-4" (click)="onsubmitbrand()" type="submit">Add</button>
+                </div>
+              </div>
+              <div *ngIf="addvendor">
+                <h5 class="title">Add Vendor</h5>
+                <div class="row">
+                    <div class=" col-md-6 pr-md-1">
+                    <div class="form-group" [formGroup]="vendorForm">
+                      <label> Vendor Name </label>
+                      <input class=" form-control" formControlName="name" placeholder="name" type="text"/>
+                    </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                      <div class="form-group" [formGroup]="vendorForm">
+                        <label> Vendor number </label>
+                        <input class=" form-control" formControlName="number" placeholder="number" type="text"/>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class=" col-md-4 pr-md-1">
+                  <div class="form-group" [formGroup]="vendorForm">
+                    <label> Vendor Contact Person Name</label>
+                    <input class=" form-control" formControlName="contactpersonname" placeholder="contactpersonname" type="text"/>
+                  </div>
+                  </div>
+                  <div class=" col-md-4 pr-md-1">
+                    <div class="form-group" [formGroup]="vendorForm">
+                      <label> Vendor Contact Person Number</label>
+                      <input class=" form-control" formControlName="contactpersonnumber" placeholder="contactpersonnumber" type="text"/>
+                    </div>
+                    </div>
+                  <div class=" col-md-4 pr-md-1">
+                    <div class="form-group" [formGroup]="vendorForm">
+                      <label> Vendor Address</label>
+                      <input class=" form-control" formControlName="address" placeholder="address" type="text"/>
+                    </div>
+                    </div>
+              </div>
+                <div class="row">
+                  <button class=" btn btn-fill ml-4" (click)="onsubmitvendor()" type="submit">Add</button>
+                </div>
+              </div>
+                <h5 class="title">Select Category</h5>
+                <div class=" row">
+                    <div class=" col-md-6 pr-md-1">
+                    <div class="form-group" [formGroup]="productForm">
+                        <label> Categories Available </label>
+                        <div class="form-group mb-3">
+                            <select class="form-control" formControlName="category" (change)="updatesubcat()" id="inputGroupSelect02">
+                            <option  *ngFor="let cat of categoryarr" [value]="cat.id" style="color: black;">{{cat.title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                        <div class="form-group">
+                        <label>Sub Categories Available </label>
+                        <div class="form-group mb-3" [formGroup]="productForm">
+                            <select class="form-control" formControlName="subcategory" id="inputGroupSelect02">
+                              <option  *ngFor="let cat of subcategoryarr" [value]="cat.id" style="color: black;">{{cat.title}}</option>
+                            </select>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="title">Select Product</h5>
+                <div class=" row">
+                    <div class=" col-md-6 pr-md-1">
+                    <div class="form-group" [formGroup]="productForm">
+                        <label> Size Type Available </label>
+                        <div class="form-group mb-3">
+                            <select class="form-control" formControlName="sizetype" (change)="updateshowsize()" id="inputGroupSelect02">
+                            <option  *ngFor="let type of sizetypes;let i = index;" [value]="i" style="color: black;">{{type}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                        <div class="form-group">
+                        <label> Types Available </label>
+                        <div class="form-group mb-3" [formGroup]="productForm">
+                            <select class="form-control" formControlName="size" id="inputGroupSelect02">
+                              <option  *ngFor="let size of showsizes;let i= index" [value]="size" style="color: black;">{{size}}</option>
+                            </select>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" row">
+                  <div class=" col-md-4 pr-md-1">
+                  <div class="form-group" [formGroup]="productForm">
+                      <label> Brands Available </label>
+                      <div class="form-group mb-3">
+                          <select class="form-control" formControlName="brand" id="inputGroupSelect02">
+                          <option  *ngFor="let cat of brandarr" [value]="cat.id" style="color: black;">{{cat.title}}</option>
+                          </select>
+                      </div>
+                  </div>
+                  </div>
+                  <div class=" col-md-4 pr-md-1">
+                      <div class="form-group">
+                      <label>Status Available </label>
+                      <div class="form-group mb-3" [formGroup]="productForm">
+                          <select class="form-control" formControlName="status" id="inputGroupSelect02">
+                            <option  *ngFor="let cat of statusarr" [value]="cat.id" style="color: black;">{{cat.title}}</option>
+                          </select>
+                      </div>
+                      </div>
+                  </div>
+                  <div class=" col-md-4 pr-md-1">
+                    <div class="form-group">
+                    <label>Vendors Available </label>
+                    <div class="form-group mb-3" [formGroup]="productForm">
+                        <select class="form-control" formControlName="vendor" id="inputGroupSelect02">
+                          <option  *ngFor="let cat of vendorarr" [value]="cat.id" style="color: black;">{{cat.vendor_name}}</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+              </div>
+                <h5 class="title">Product Details</h5>
+                <div class=" row">
+                    <div class=" col-md-6 pr-md-1">
+                        <div class=" form-group" [formGroup]="productForm">
+                            <label> Product Title </label>
+                            <input class=" form-control" formControlName="title" placeholder="Title" type="text"/>
+                          </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                        <div class=" form-group" [formGroup]="productForm">
+                            <label> Quantity </label>
+                            <input class=" form-control" formControlName="quantity" type="number" min="1" max="100"/>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-6 pr-md-1">
+                        <div class=" form-group" [formGroup]="productForm">
+                            <label> Warranty </label>
+                            <input class=" form-control" formControlName="warranty" Placeholder="In Years" type="number" min="1" max="10"/>
+                        </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                        <div class="form-group">
+                        <label>Sale </label>
+                        <div class="form-group mb-3" [formGroup]="productForm">
+                          <select class="form-control" formControlName="sale" id="inputGroupSelect02">
+                            <option  *ngFor="let sale of salearr" [value]="sale.id" style="color: black;">{{sale.title}}</option>
+                          </select>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-6 pr-md-1">
+                        <div class=" form-group" [formGroup]="productForm">
+                            <label> Purchase Price </label>
+                            <input class=" form-control" formControlName="purchaseprice" placeholder="Purchase Price" type="text"/>
+                        </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                        <div class=" form-group" [formGroup]="productForm">
+                            <label> Selling Price </label>
+                            <input class=" form-control" formControlName="sellingprice" placeholder="Selling Price" type="text"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-6 pr-md-1">
+                        <div class=" form-group" [formGroup]="productForm">
+                            <label> Product Description </label>
+                            <textarea class=" form-control" formControlName="productdescription" placeholder="Description" rows="4" type="text"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-6 pr-md-1">
+                        <div [formGroup]="productForm">
+                            <label for="image1">Product Image 1:</label>
+                            <input type="file" (change)="saveimage1($event)" class="form-control-file" id="image1" />
+                        </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                        <div [formGroup]="productForm">
+                            <label for="image1">Product Image 2:</label>
+                            <input type="file" (change)="saveimage2($event)" class="form-control-file" id="image1" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-6 pr-md-1">
+                        <div [formGroup]="productForm">
+                            <label for="image1">Product Image 3:</label>
+                            <input type="file" (change)="saveimage3($event)" class="form-control-file" id="image1" />
+                        </div>
+                    </div>
+                    <div class=" col-md-6 pr-md-1">
+                        <div [formGroup]="productForm">
+                            <label for="image1">Product Image 4:</label>
+                            <input type="file" (change)="saveimage4($event)" class="form-control-file" id="image1" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+          </div>
+          <div class=" card-footer">
+            <button class=" btn btn-fill" (click)="onsubmit()" type="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,7 @@
+<app-navbar-mobile *ngIf="isMobile; else elseBlock"></app-navbar-mobile>
+<ng-template #elseBlock><app-navbar></app-navbar></ng-template>
+<br/>
+<app-main-body></app-main-body>
+<app-footer></app-footer>
+<!-- <br />
+<app-searchnlogo></app-searchnlogo> -->

@@ -1,0 +1,18 @@
+.searchbar {
+    margin-top: 10px;
+    margin-left: 13%;
+}
+.logosimage {
+    padding-left: 0;
+}
+.btn-primary.custom-btn {
+	background-color: #002e71;
+    border-color: #002e71;
+}
+.shoppingcart {
+    margin-top: 10px;
+    float: right;
+}
+.shoppingcart button {
+    width: 110px;
+}

@@ -1,0 +1,35 @@
+.shadowing {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 7px 0 rgba(0, 0, 0, 0.19);
+}
+.btn-primary.custom-btn {
+	background-color: #002e71;
+    border-color: #002e71;
+}
+.btn-primary.mycustom-btn {
+	background-color: #64b3ba;
+    border-color: #64b3ba;
+}
+.tablecont {
+    width: 100%;
+    color: white;
+}
+.formplacing {
+    background-color: white;
+    padding: 10px 10px 50px;
+}
+.formplacing h5 {
+    margin-bottom: 25px;
+}
+.totalplacing {
+    background-color: white;
+    padding: 10px 10px 90px;
+}
+.totalplacing p {
+    text-align: right;
+}
+.totalplacing button {
+    padding: 15px 25px 15px 25px;
+}
+.req {
+    color: red;
+}

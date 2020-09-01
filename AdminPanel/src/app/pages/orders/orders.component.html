@@ -1,0 +1,98 @@
+
+<div class=" content">
+    <div class=" row">
+        <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="dispatch()">Dispatched</button>
+        </div>
+        <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="delivered()">Delivered</button>
+        </div>
+        <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="reorder()">Reorder</button>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" [formGroup]="filterForm">
+                <label> Delivery Date</label>
+                <input class="form-control" formControlName="delivery_date" (change)="addfilter($event)" placeholder="Delivery Date" type="date"/>
+            </div>
+        </div>
+        <div class=" col-md-12">
+            <div class=" card card-plain">
+                <div class=" card-header">
+                    <h4 class=" card-title">Orders</h4>
+                    <p class=" category">All Orders</p>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+                    <table class=" table tablesorter" id="">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th class="text-center">Select</th>
+                            <th class="text-center">Id</th>
+                            <th class="text-center">Address</th>
+                            <th class="text-center">OrderDate</th>
+                            <th class="text-center">Order_Delivery_Date</th>
+                            <th class="text-center">Order Status</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Person Name</th>
+                            <th class="text-center">Person Number</th>
+                            <th class="text-center">Total Amount</th>
+                            <th class="text-center">OrderCode</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let order of Allorders; let i = index;">
+                            <td><input type="checkbox" value="{{order.id}}" (change)="addorder($event)"></td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.id}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.address}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.order_date | date}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.order_delivery_date | date}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.current_status}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.quantity}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.contact_person}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.contact_person_number1}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.total_amount}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.order_code}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="show">
+        <div class=" col-md-12">
+            <div class=" card card-plain">
+                <div class=" card-header">
+                    <h4 class=" card-title">Orders</h4>
+                    <p class=" category">All Orders</p>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+                    <table class=" table tablesorter" id="">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th class="text-center">Id</th>
+                            <th class="text-center">Product</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let orderproduct of OrderedProducts; let i = index;">
+                            <td class="text-center" (click)="onrowclick(i)">{{i + 1}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{Productinfo[i].title}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{orderproduct.quantity}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{Productinfo[i].price}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+

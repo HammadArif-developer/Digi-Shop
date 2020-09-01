@@ -1,0 +1,88 @@
+
+<div class=" content">
+    <div class=" row">
+        <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="toaddsale()">Add Sale</button>
+        </div>
+        <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="todeletesale()">Delete Sale</button>
+        </div>
+        <div class="col-md-12" *ngIf="addsale">
+            <h5 class="title">Add Sale</h5>
+            <div class="row">
+                <div class=" col-md-6 pr-md-1">
+                <div class="form-group" [formGroup]="saleForm">
+                  <label> Sale Title </label>
+                  <input class=" form-control" formControlName="title" placeholder="Title" type="text"/>
+                </div>
+                </div>
+                <div class=" col-md-6 pr-md-1">
+                    <div class="form-group" [formGroup]="saleForm">
+                      <label> Sale Discount </label>
+                      <input class=" form-control" formControlName="discount" placeholder="Discount" type="text"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-md-6 pr-md-1">
+                <div class="form-group" [formGroup]="saleForm">
+                  <label> Start Date</label>
+                  <input class="form-control" formControlName="start_date" placeholder="Date" type="date"/>
+                </div>
+                </div>
+                <div class=" col-md-6 pr-md-1">
+                    <div class="form-group" [formGroup]="saleForm">
+                      <label> End Date </label>
+                      <input class="form-control" formControlName="end_date" placeholder="Date" type="date"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <button class=" btn btn-fill ml-4" (click)="onsubmitaddsale()" type="submit">Add</button>
+            </div>
+        </div>
+        <!-- <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="deleteproducts()">Delete Products</button>
+        </div> -->
+        <!-- <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="disableproducts()">Disable Products</button>
+        </div> -->
+        <div class="col-md-12">
+            <div class=" card card-plain">
+                <div class=" card-header">
+                    <h4 class=" card-title">Sales</h4>
+                    <p class=" category">All Sales</p>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+                    <table class=" table tablesorter" id="">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th class="text-center">Select</th>
+                            <th class="text-center">Id</th>
+                            <th class="text-center">Discount</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Start_date</th>
+                            <th class="text-center">End_date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let sale of Allsales; let i = index;">
+                            <td><input type="checkbox" value="{{sale.id}}" (change)="addsaleid($event)"></td>
+                            <td class="text-center" (click)="onrowclick(i)">{{sale.id}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{sale.discount}} %</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{sale.title}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{sale.start_date | date}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{sale.end_date | date}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+

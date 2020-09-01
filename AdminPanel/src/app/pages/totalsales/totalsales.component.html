@@ -1,0 +1,84 @@
+
+<div class=" content">
+    <div class=" row">
+        <!-- <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="routetoaddproduct()">Add Product</button>
+        </div>
+        <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="deleteproducts()">Delete Products</button>
+        </div>
+        <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="disableproducts()">Disable Products</button>
+        </div> -->
+        <!-- <div class="col-md-4">
+            <button class=" btn btn-fill" type="submit" (click)="generateprofits()">Generate Profits</button>
+        </div> -->
+        <div class="col-md-12" *ngIf = "genprofit">
+            <div class="card card-plain">
+                <div class=" card-header">
+                    <h4 class=" card-title">Total Profit Of Seleted Order: {{Total_Profit}}</h4>
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-12">
+            <div class=" card card-plain">
+                <div class=" card-header">
+                    <h4 class=" card-title">Orders</h4>
+                    <p class=" category">All Orders</p>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+                    <table class=" table tablesorter" id="">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th class="text-center">Id</th>
+                            <th class="text-center">OrderCode</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let order of Allorders; let i = index;">
+                            <td class="text-center" (click)="onrowclick(i)">{{order.id}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{order.order_code}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="show">
+        <div class=" col-md-12">
+            <div class=" card card-plain">
+                <div class=" card-header">
+                    <p class=" category">Order</p>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+                    <table class=" table tablesorter" id="">
+                        <thead class=" text-primary">
+                        <tr>
+                            <th class="text-center">Id</th>
+                            <th class="text-center">Product</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Profit</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let orderproduct of OrderedProducts; let i = index;">
+                            <td class="text-center" (click)="onrowclick(i)">{{i + 1}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{Productinfo[i].title}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{orderproduct.quantity}}</td>
+                            <td class="text-center" (click)="onrowclick(i)">{{Productinfo[i].profit}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+

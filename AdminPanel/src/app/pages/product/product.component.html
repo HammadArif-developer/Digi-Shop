@@ -1,0 +1,220 @@
+
+<div class=" content">
+    <div class=" row">
+    <div class="col-md-4">
+        <button class=" btn btn-fill" type="submit" (click)="routetoaddproduct()">Add Product</button>
+    </div>
+    <div class="col-md-4">
+      <button class=" btn btn-fill" type="submit" (click)="deleteproducts()">Delete Products</button>
+    </div>
+    <div class="col-md-4">
+      <button class=" btn btn-fill" type="submit" (click)="disableproducts()">Disable Products</button>
+    </div>
+      <div class=" col-md-12">
+        <div class=" card card-plain">
+          <div class=" card-header">
+            <h4 class=" card-title">Products</h4>
+            <p class=" category">All products</p>
+          </div>
+          <div class=" card-body">
+            <div class=" table-responsive">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th class="text-center">Select</th>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Title</th>
+                    <!-- <th>Description</th> -->
+                    <th class="text-center">Available_Quantity</th>
+                    <!-- <th>Review_Id</th>
+                    <th>Category_Id</th>
+                    <th>Brand_Id</th>
+                    <th>Vendor_Id</th> -->
+                    <!-- <th class="text-center">Ratings</th> -->
+                    <!-- <th>Status_Id</th> -->
+                    <th class="text-center">Purchase_Price</th>
+                    <th class="text-center">Sell_Price</th>
+                    <th class="text-center">Profit</th>
+                    <th class="text-center">Warranty</th>
+                    <th class="text-center">Product_Code</th>
+                    <th class="text-center">Status</th>
+                    <!-- <th>Sale_Id</th> -->
+                    <!-- <th>Subcategory_Id</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of Allproducts; let i = index;">
+                    <td><input type="checkbox" value="{{product.id}}" (change)="addproduct($event)"></td>
+                    <td class="text-center" (click)="onrowclick(i)">{{product.id}}</td>
+                    <td class="text-center" (click)="onrowclick(i)">{{product.title}}</td>
+                    <!-- <td>{{product.description}}</td> -->
+                    <td class="text-center" (click)="onrowclick(i)">{{product.available_quantity}}</td>
+                    <!-- <td>{{product.review_id}}</td>
+                    <td>{{product.category_id}}</td>
+                    <td>{{product.brand_id}}</td>
+                    <td>{{product.vendor_id}}</td> -->
+                    <!-- <td class="text-center" (click)="onrowclick(i)">{{product.ratings}}</td> -->
+                    <!-- <td>{{product.status_id}}</td> -->
+                    <td class="text-center" (click)="onrowclick(i)">{{product.purchase_price}}</td>
+                    <td class="text-center" (click)="onrowclick(i)">{{product.sell_price}}</td>
+                    <td class="text-center" (click)="onrowclick(i)">{{product.profit}}</td>
+                    <td class="text-center" (click)="onrowclick(i)">{{product.warranty}}</td>
+                    <td class="text-center" (click)="onrowclick(i)">{{product.product_code}}</td>
+                    <td class="text-center" (click)="onrowclick(i)">{{product.status_id}}</td>
+                    <!-- <td>{{product.sale_id}}</td> -->
+                    <!-- <td class="text-center">{{product.subcategory_id}}</td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" *ngIf="show">
+        <h5 class="title">Select Category</h5>
+        <div class=" row">
+            <div class=" col-md-6 pr-md-1">
+            <div class="form-group" [formGroup]="productForm">
+                <label> Categories Available </label>
+                <div class="form-group mb-3">
+                    <select class="form-control" formControlName="category" (change)="updatesubcat()" id="inputGroupSelect02">
+                    <option  *ngFor="let cat of categoryarr" [value]="cat.id" style="color: black;">{{cat.title}}</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+            <div class=" col-md-6 pr-md-1">
+                <div class="form-group">
+                <label>Sub Categories Available </label>
+                <div class="form-group mb-3" [formGroup]="productForm">
+                    <select class="form-control" formControlName="subcategory" id="inputGroupSelect02">
+                      <option  *ngFor="let cat of subcategoryarr" [value]="cat.id" style="color: black;">{{cat.title}}</option>
+                    </select>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class=" row">
+          <div class=" col-md-4 pr-md-1">
+          <div class="form-group" [formGroup]="productForm">
+              <label> Brands Available </label>
+              <div class="form-group mb-3">
+                  <select class="form-control" formControlName="brand" id="inputGroupSelect02">
+                  <option  *ngFor="let cat of brandarr" [value]="cat.id" style="color: black;">{{cat.title}}</option>
+                  </select>
+              </div>
+          </div>
+          </div>
+          <div class=" col-md-4 pr-md-1">
+              <div class="form-group">
+              <label>Sales Available </label>
+              <div class="form-group mb-3" [formGroup]="productForm">
+                  <select class="form-control" formControlName="sale" id="inputGroupSelect02">
+                    <option  *ngFor="let sale of salesarr" [value]="sale.id" style="color: black;">{{sale.title}}</option>
+                  </select>
+              </div>
+              </div>
+          </div>
+          <div class=" col-md-4 pr-md-1">
+            <div class="form-group">
+            <label>Vendors Available </label>
+            <div class="form-group mb-3" [formGroup]="productForm">
+                <select class="form-control" formControlName="vendor" id="inputGroupSelect02">
+                  <option  *ngFor="let cat of vendorarr" [value]="cat.id" style="color: black;">{{cat.vendor_name}}</option>
+                </select>
+            </div>
+            </div>
+        </div>
+      </div>
+        <h5 class="title">Product Details</h5>
+        <div class=" row">
+            <div class=" col-md-6 pr-md-1">
+                <div class=" form-group" [formGroup]="productForm">
+                    <label> Product Title </label>
+                    <input class=" form-control" formControlName="title" placeholder="Title" type="text"/>
+                  </div>
+            </div>
+            <div class=" col-md-6 pr-md-1">
+                <div class=" form-group" [formGroup]="productForm">
+                    <label> Quantity </label>
+                    <input class=" form-control" formControlName="quantity" type="number" min="1" max="100"/>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-md-6 pr-md-1">
+                <div class=" form-group" [formGroup]="productForm">
+                    <label> Warranty </label>
+                    <input class=" form-control" formControlName="warranty" Placeholder="In Years" type="number" min="1" max="10"/>
+                </div>
+            </div>
+            <div class=" col-md-6 pr-md-1">
+                <div class="form-group">
+                <label>Status </label>
+                <div class="form-group mb-3" [formGroup]="productForm">
+                  <select class="form-control" formControlName="status" id="inputGroupSelect02">
+                    <option  *ngFor="let cat of statusarr" [value]="cat.id" style="color: black;">{{cat.title}}</option>
+                  </select>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-md-6 pr-md-1">
+                <div class=" form-group" [formGroup]="productForm">
+                    <label> Purchase Price </label>
+                    <input class=" form-control" formControlName="purchaseprice" placeholder="Purchase Price" type="text"/>
+                </div>
+            </div>
+            <div class=" col-md-6 pr-md-1">
+                <div class=" form-group" [formGroup]="productForm">
+                    <label> Selling Price </label>
+                    <input class=" form-control" formControlName="sellingprice" placeholder="Selling Price" type="text"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-md-6 pr-md-1">
+                <div class=" form-group" [formGroup]="productForm">
+                    <label> Product Description </label>
+                    <textarea class=" form-control" formControlName="productdescription" placeholder="Description" rows="4" type="text"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-md-6 pr-md-1">
+                <div [formGroup]="productForm">
+                    <label for="image1">Product Image 1:</label>
+                    <input type="file" (change)="saveimage1($event)" class="form-control-file" id="image1" />
+                </div>
+            </div>
+            <div class=" col-md-6 pr-md-1">
+                <div [formGroup]="productForm">
+                    <label for="image2">Product Image 2:</label>
+                    <input type="file" (change)="saveimage2($event)" class="form-control-file" id="image2" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-md-6 pr-md-1">
+                <div [formGroup]="productForm">
+                    <label for="image3">Product Image 3:</label>
+                    <input type="file" (change)="saveimage3($event)" class="form-control-file" id="image3" />
+                </div>
+            </div>
+            <div class=" col-md-6 pr-md-1">
+                <div [formGroup]="productForm">
+                    <label for="image4">Product Image 4:</label>
+                    <input type="file" (change)="saveimage4($event)" class="form-control-file" id="image4" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class=" btn btn-fill" type="submit" (click)="editproduct()">Edit Product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

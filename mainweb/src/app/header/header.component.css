@@ -1,0 +1,108 @@
+.top-section1{
+    width: 100%; 
+    background-color: #64b3ba;
+}
+.incontent {
+    display: inline;
+}
+.phone {
+    padding-left: 10px;
+}
+.phone span {
+    font-size: 12px;
+    color: #ffffff;
+    margin-left: 5px;
+}
+.phone i {
+    color:white;
+    font-size: 12px;
+}
+.english {
+    display: inline;
+    margin-right: 15px;
+}
+.english p {
+    font-size: 12px;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+.english svg {
+    width: 18px;
+    height: 20px;
+    margin-right: 10px;
+    margin-left: 15px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.english span {
+    font-size: 12px;
+}
+.dropdown span {
+    margin: 0;
+    font-size: 12px;
+}
+
+/* // Medium devices (tablets, 768px and up) */
+/* @media (width: 750px) {
+    .phone i {
+        font-size: 6px;
+        margin-top: 1px;
+        margin-left: 0;
+    }
+    .phone span {
+        font-size: 6px;
+        color: white;
+    }
+    .english p {
+        font-size: 6px;
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
+    .english svg {
+        width: 9px;
+        height: 10px;
+        float: left;
+        margin-right: 5px;
+        margin-left: 7.5px;
+    }
+    .dropdown p {
+        margin: 0;
+        font-size: 6px;
+    } 
+ } */
+ /* @media (min-width: 998px) {
+    .phone {
+        margin-bottom: 0px;
+    }
+    .phone p {
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+    .phone i {
+        color:white;
+        float: left;
+        font-size: 12px;
+        margin-right: 5px;
+        margin-top: 5px;
+        margin-left: 0;
+    }
+    .phone span {
+        margin: 0;
+    }
+    .english p {
+        font-size: 12px;
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+    .english svg {
+        width: 18px;
+        height: 20px;
+        float: left;
+        margin-right: 10px;
+        margin-left: 15px;
+    }
+    .dropdown p {
+        margin: 0;
+        font-size: 12px;
+    }
+  } */

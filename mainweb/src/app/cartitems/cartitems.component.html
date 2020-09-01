@@ -1,0 +1,121 @@
+<app-navbar-mobile *ngIf="isMobile; else elseBlock"></app-navbar-mobile>
+<ng-template #elseBlock><app-navbar></app-navbar></ng-template>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <img class="shadow" src="../../assets/images/banner4.jpg" alt="Los Angeles" width="100%" height="265">
+        </div>
+    </div>
+</div>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="overflow-x: auto;">
+            <table class="table table-bordered bg-white shadow"> 
+                <thead>
+                  <tr style="text-align: center;">
+                    <th scope="col">Product</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of cartproducts; let i = index" style="text-align: center;">
+                    <td><img class="shadow" src="../../assets/images/laptop1.jpg" alt="Los Angeles" width="70" height="70"></td>
+                    <td>{{product[0].title}}</td>
+                    <td>{{productbrand[i]}}</td>
+                    <!-- <td><input type="number" [(ngModel)]='cartproductsids[i].quantity' min="0" max={{product[0].available_quantity}} step="1" style="width: 35%;"/></td> -->
+                    <td><input type="number"  [(ngModel)]='quantitychoosen[i]' (change)="checking(i)" min="0" max={{product[0].available_quantity}} step="1" style="width: 10    0%;"/></td>
+                    <!-- <td>{{cartproductsids[i].quantity}}</td> -->
+                    <td>Rs {{product[0].sell_price}}</td>
+                    <td>{{productcost[i]}}</td>
+                  </tr>
+                  <!-- <tr style="text-align: center;">
+                    <td><img class="shadow" src="../../assets/images/laptop1.jpg" alt="Los Angeles" width="70" height="70"></td>
+                    <td>Thornton</td>
+                    <td>Dell</td>
+                    <td><input type="number" value="2" min="0" max="10" step="1" style="width: 20%;"/></td>
+                    <td>$150</td>
+                    <td>$300</td>
+                  </tr> -->
+                  <!-- <tr style="text-align: center;">
+                    <td><img class="shadow" src="../../assets/images/laptop1.jpg" alt="Los Angeles" width="70" height="70"></td>
+                    <td>the Bird</td>
+                    <td>Acer</td>
+                    <td><input type="number" value="5" min="0" max="10" step="1" style="width: 20%;"/></td>
+                    <td>$100</td>
+                    <td>$500</td>
+                  </tr> -->
+                </tbody>
+            </table>
+                <button class="btn btn-primary mycustom-btn my-2 my-sm-0 pull-right" type="submit" (click)="tohome()">Continue Shopping</button>
+                <button class="btn btn-primary mycustom-btn my-2 my-sm-0 pull-right" type="submit" style="margin-right: 10px;" (click)="calculatetotal()">Confirm</button>
+        </div>
+        <span class="req pull-right" *ngIf="confirm">*confirm before proceeding</span>
+    </div>
+</div>  
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8" style="margin-top: 5px;margin-bottom: 5px;">
+            <div class="formplacing shadow">
+                <h5>Details</h5>
+                <form>
+                    <div class="d-flex justify-content-between">
+                        <div class="form-group" [formGroup]="orderForm">
+                            <label for="country">Country<span class="req" *ngIf="orderForm.get('country').errors?.required">*</span></label>
+                            <input type="text"  id="country" formControlName="country" class="form-control" required>
+                        </div>
+                        <div class="form-group" [formGroup]="orderForm">
+                            <label for="state">State/Province<span class="req" *ngIf="orderForm.get('state').errors?.required">*</span></label>
+                            <input type="text" formControlName="state" id="state" class="form-control" required>
+                        </div>
+                        <div class="form-group" [formGroup]="orderForm">
+                            <label for="fullName">Full Name<span class="req" *ngIf="orderForm.get('fullName').errors?.required">*</span></label>
+                            <input type="text" formControlName="fullName" id="fullName" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group" [formGroup]="orderForm">
+                        <label for="phoneNumber">Phone Number<span class="req" *ngIf="orderForm.get('phoneNumber').errors?.required">*</span></label>
+                        <input type="text" formControlName="phoneNumber" id="phoneNumber" class="form-control" required>
+                    </div>
+                    <div class="form-group" [formGroup]="orderForm">
+                        <label for="address">Address<span class="req" *ngIf="orderForm.get('address').errors?.required">*</span></label>
+                        <textarea type="text" formControlName="address" id="address" class="form-control" required></textarea>
+                    </div>
+                    <!-- <button class="btn btn-primary custom-btn pull-right" type="submit" (click)="displaysubmit()">Save</button> -->
+                </form>
+            </div>
+        </div>
+        <!-- <div class="col-md-4" style="margin-top: 5px;">
+            <div class="formplacing shadow">
+                <h5>Request Time and Day</h5>
+                <form>
+                    <div class="form-group" [formGroup]="orderForm">
+                        <label for="requestedDay">Request Day For Delivery</label>
+                        <input type="text" formControlName="requestedDay" id="requestedDay" class="form-control" required>
+                    </div>
+                    <div class="form-group" [formGroup]="orderForm">
+                        <label for="requestedTime">Requested Time Of Day</label>
+                        <input type="text" formControlName="requestedTime" id="requestedTime" class="form-control" required>
+                    </div>
+                </form>
+            </div>
+        </div> -->
+        <div class="col-md-4" style="margin-top: 5px;">
+            <div class="totalplacing shadow">
+                <p>Subtotal:    Rs {{subtotal}}</p>
+                <p>Grand total:    Rs {{grandtotal}}</p>
+                <span class="req pull-right" *ngIf="notcom">*one or more fields are empty</span>
+                <button class="btn btn-primary custom-btn pull-right" type="submit" (click)="orderplaced()">Proceed To Checkout</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+<app-spinner></app-spinner>

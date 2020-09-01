@@ -1,0 +1,196 @@
+<app-navbar-mobile *ngIf="isMobile; else elseBlock"></app-navbar-mobile>
+<ng-template #elseBlock><app-navbar></app-navbar></ng-template>
+<br/>
+<div class="container-fluid" style="text-align: center;">
+    <span style="font-size: 15px;"><i class="fa fa-home" aria-hidden="true"></i>Home / Categories</span>
+</div>
+<br/>
+<div class="container">
+    <div class="row" >
+        <div class="col-md-4">
+            <div class="row">
+                <div class="imageoverlay">
+                    <img src="{{default_image}}" class="image rounded">
+                    <div class="overlay">
+                        <img src="{{default_image}}" class="image rounded">
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row" *ngIf = "otherimages">
+                <div class="col-md-8 offset-2">
+                    <div id="multi-item-corousel" class="carousel slide carousel-multi-item " data-ride="carousel">
+
+          
+            
+                        <ol class="carousel-indicators" style="top: 100%; display: none !important;">
+                          <li data-target="#multi-item-corousel" data-slide-to="0" class="active"></li>
+                          <li data-target="#multi-item-corousel" data-slide-to="1"></li>
+                          <li data-target="#multi-item-corousel" data-slide-to="2"></li>
+                        </ol>
+                      
+                  
+                        
+                        <div class="carousel-inner" role="listbox">       
+                          <div class="carousel-item active">
+                            <div class="row" style="text-align: center;">
+                                <div *ngFor = "let image of prod_image;let i = index;" class="col-md-4">
+                                  
+                                  <img src={{image}} alt="Los Angeles" width="50" height="50" (click)="tosee(i)">
+
+                                </div>
+                            </div>    
+                  
+                          </div>
+                          <div class="carousel-item">
+                            <div class="row" style="text-align: center;">
+                                <div *ngFor = "let image of prod_image;let i = index;" class="col-md-4" style="justify-content: center;">
+                                  
+                                  <img src={{image}} alt="Los Angeles" width="50" height="50" (click)="tosee(i)">
+
+                                </div>
+                            </div>    
+                  
+                          </div>
+                          <div class="carousel-item">
+                            <div class="row" style="text-align: center;">
+                                <div *ngFor = "let image of prod_image;let i = index;" class="col-md-4" style="justify-content: center;">
+                                  
+                                  <img src={{image}} alt="Los Angeles" width="50" height="50" (click)="tosee(i)">
+
+                                </div>
+                            </div>    
+                  
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#multi-item-corousel" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                          </a>
+                        <a class="carousel-control-next" href="#multi-item-corousel" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a> 
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="description">
+                <p style="font-size: 20px;"><strong>{{product.title}}</strong></p>
+                <div>
+                    <div class="d-inline" *ngFor="let star of stars_highlight">
+                      <span *ngIf="star" class="fa fa-star checked"></span>
+                    </div>
+                    <div class="d-inline">
+                      <span *ngIf="!stars_highlight[0]" class="fa fa-star"></span>
+                      <span *ngIf="!stars_highlight[1]" class="fa fa-star"></span>
+                      <span *ngIf="!stars_highlight[2]" class="fa fa-star"></span>
+                      <span *ngIf="!stars_highlight[3]" class="fa fa-star"></span>
+                      <span *ngIf="!stars_highlight[4]" class="fa fa-star"></span>
+                    </div>
+                    <span> {{total_reviews}} Ratings</span>
+                </div>
+                <div>
+                    <span>Brand: {{productBrand}}</span>
+                </div>
+                <div>
+                    <span style="color: orange;font-size: 25px;" *ngIf="!productsalecheck">Rs: {{product.sell_price}}</span>
+                    <span style="color: orange;font-size: 25px;" *ngIf="productsalecheck">Rs: <s>{{product.sell_price}}</s> {{productsaleprice}}</span>
+                </div>
+                <div>
+                    <p style="font-size: 15px;"><strong>Short Description</strong></p>
+                    <p>{{product.description}}</p>
+                </div>
+                <div>
+                    <span>Quantity: </span>
+                    <input type="number"  [(ngModel)]='quantitychoosen' min="0" max={{product.available_quantity}} step="1" style="width: 10%;"/>
+                </div>
+                <div class="ic">
+                    <div class="shoppingcart d-inline">
+                        <button class="btn btn-primary custom-btn my-2 my-sm-0" type="button" (click)="saveproducttocache(product.id,quantitychoosen)"><span><i class="fa fa-shopping-cart" style="color: #ffffff;" aria-hidden="true"></i> </span> Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row" style="background-color: white;">
+        <div class="col-4" >
+            <div class="dcr">
+                <div class="list-group" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Description</a>
+                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Comments</a>
+                    <!-- <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Review</a> -->
+                </div>
+            </div>
+        </div>
+          <div class="col-8">
+              <div class="dcr">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">{{product.description}}</div>
+                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                      <div *ngFor="let comment of comments" class="comment">
+                        <p class="title">{{comment.comment_by}}</p>
+                        <p class="date">{{comment.comment_date}}</p>
+                        <p class="commentcontent">{{comment.description}}</p>
+                      </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Review</div> -->
+                </div>
+              </div>
+          </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="row">
+        <div class="col-md-8" style="margin-top: 5px;margin-bottom: 5px;">
+          <div class="formplacing shadow">
+              <h5>Comment</h5>
+              <form [formGroup]="commentForm">
+                <div class="form-group d-inline" >
+                  <label for="name" style="margin-top: 5px;"><p style="font-weight: bold;">Rate Product<span class="req" *ngIf="commentForm.get('rating').errors?.required">*</span> :</p></label>
+                  <input type="number" formControlName="rating" min="0"  max="5" class="form-control" required>
+                </div>
+                      <div class="form-group d-inline" >
+                          <label for="name" style="margin-top: 5px;"><p style="font-weight: bold;">Name<span class="req" *ngIf="commentForm.get('name').errors?.required">*</span> :</p></label>
+                          <input type="text"  id="name" formControlName="name" class="form-control" required>
+                      </div>
+                      <div class="form-group d-inline">
+                          <label for="email" style="margin-top: 5px;"><p style="font-weight: bold;">Email<span class="req" *ngIf="commentForm.get('email').errors?.required">*</span> :</p></label>
+                          <input type="text" formControlName="email" id="email" class="form-control" required>
+                          <span class="req" *ngIf="commentForm.get('email').errors?.pattern">Enter Correct Pattern</span>
+                      </div>
+                    <div class="form-group" >
+                        <label for="comment" style="margin-top: 5px;"><p style="font-weight: bold;">Comment<span class="req" *ngIf="commentForm.get('comment').errors?.required">*</span></p></label>
+                        <textarea type="text" formControlName="comment" id="comment" class="form-control" required></textarea>
+                    </div>
+                  <button class="btn btn-primary custom-btn pull-right" type="submit" (click)="onsubmitcomment()">Comment</button>
+              </form>
+          </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="checkrel">
+        <div class="col-md-12">
+            <h5>Related Products</h5>
+        </div>
+        <div class="col-md-12">
+          <div *ngFor="let prod of relatedproducts; let i = index" class="column">
+            <div class="cardx">
+              <div class="d-flex" (click)="navigatetodescription(prod.id)" style="background-color: white;height: 200px;justify-content: center;padding-bottom: 5px;">
+                <img src="{{ relatedproductImages[i] }}" alt="Jane" width="80%" style="padding-top: 5px;">
+              </div>
+              <div class="containerx" style="height: 150px; text-align: center;">
+                <h5>{{prod.title}}</h5>
+                <p *ngIf="!salecheck[i]">Rs {{prod.sell_price}}</p>
+                <p *ngIf="salecheck[i]">Rs <s>{{prod.sell_price}}</s> {{saleprice[i]}}</p>
+                <div class="shoppingcart d-inline">
+                  <button class="btn btn-primary custom-btn my-2 my-sm-0" type="submit" href="/" (click)="saveproducttocache(relatedproducts[i].id,quantitychoosen)"><span><i class="fa fa-shopping-cart" style="color: #ffffff;" aria-hidden="true"></i> </span> Add To Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<br/>
+<app-footer></app-footer>
